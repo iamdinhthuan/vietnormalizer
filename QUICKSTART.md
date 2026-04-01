@@ -6,7 +6,7 @@
 
 1. **Clone and enter the repo**
    ```bash
-   git clone https://github.com/nghimestudio/vietnormalizer.git
+   git clone https://github.com/iamdinhthuan/vietnormalizer.git
    cd vietnormalizer
    ```
 

@@ -10,14 +10,13 @@ readme_file = Path(__file__).parent / "README.md"
 long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists() else ""
 
 setup(
-    name="vietnormalizer",
-    version="0.2.3",
+    name="vietnormalizer-thuan",
+    version="0.3.0",
     description="A Python library for normalizing Vietnamese text for TTS and NLP applications",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="Nghi Studio",
-    author_email="nghimestudio@gmail.com",
-    url="https://github.com/nghimestudio/vietnormalizer",
+    author="Dinh Thuan",
+    url="https://github.com/iamdinhthuan/vietnormalizer",
     packages=find_namespace_packages(),
     package_data={
         "vietnormalizer": ["data/*.csv"],
@@ -38,4 +37,3 @@ setup(
     keywords=["vietnamese", "text-normalization", "nlp", "tts", "text-to-speech"],
     zip_safe=False,
 )
-

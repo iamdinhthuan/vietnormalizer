@@ -1,6 +1,6 @@
 # Vietnamese Text Normalizer
 
-[![PyPI version](https://badge.fury.io/py/vietnormalizer.svg)](https://badge.fury.io/py/vietnormalizer)
+[![PyPI version](https://badge.fury.io/py/vietnormalizer-thuan.svg)](https://badge.fury.io/py/vietnormalizer-thuan)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 A Python library for normalizing Vietnamese text, designed for Text-to-Speech (TTS) and Natural Language Processing (NLP) applications. Ported from [nghitts](https://github.com/nghimestudio/nghitts).
@@ -17,7 +17,7 @@ A Python library for normalizing Vietnamese text, designed for Text-to-Speech (T
 - **Measurement Units**: `120km/h` → `một trăm hai mươi ki-lô-mét trên giờ`
 - **Acronym Expansion**: Dictionary-based (`NASA` → `na-sa`)
 - **Non-Vietnamese Word Replacement**: Dictionary-based (`container` → `công-tê-nơ`)
-- **Rule-based Transliteration**: Words NOT in dictionaries are automatically transliterated to Vietnamese phonetics (`algorithm` → `a-go-rít`)
+- **Optional Rule-based Transliteration**: Words NOT in dictionaries can be transliterated to Vietnamese phonetics when enabled (`algorithm` → `a-go-rít`)
 - **Vietnamese Word Detection**: Automatically detects Vietnamese words and skips them during transliteration
 - **Text Cleaning**: Removes emojis, URLs, emails, normalizes Unicode and punctuation
 - **Special Characters**: `&` → `và`, `@` → `a còng`, `#` → `thăng`
@@ -26,13 +26,13 @@ A Python library for normalizing Vietnamese text, designed for Text-to-Speech (T
 ## Installation
 
 ```bash
-pip install vietnormalizer
+pip install vietnormalizer-thuan
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/nghimestudio/vietnormalizer.git
+git clone https://github.com/iamdinhthuan/vietnormalizer.git
 cd vietnormalizer
 pip install -e .
 ```
@@ -48,17 +48,17 @@ normalizer = VietnameseNormalizer()
 normalizer.normalize("Hôm nay là 25/12/2023, lúc 14:30")
 # → "hôm nay là ngày hai mươi lăm tháng mười hai năm hai nghìn không trăm hai mươi ba, lúc mười bốn giờ ba mươi phút"
 
-# Non-Vietnamese word replacement (from built-in dictionary)
+# Non-Vietnamese word replacement (from built-in dictionary, when enabled)
 normalizer.normalize("Hello container from Singapore")
-# → "hê-lô công-tê-nơ phờ-rôm xin-ga-po"
+# → "hello container from singapore"
 
 # Acronym expansion (from built-in dictionary)
 normalizer.normalize("Tôi xem TV và dùng AI hàng ngày")
 # → "tôi xem ti vi và dùng trí tuệ nhân tạo hàng ngày"
 
-# Rule-based transliteration for words NOT in dictionary
+# By default, English words are kept as-is
 normalizer.normalize("database server configuration")
-# → "đa-ta-bê xơ-vơ con-phi-gu-raân"
+# → "database server configuration"
 
 # Measurement units
 normalizer.normalize("Tốc độ 120km/h, diện tích 500m2")
@@ -84,13 +84,15 @@ normalizer.normalize("3-5% dân số")
 ## Transliteration Control
 
 ```python
-# Disable transliteration (only use CSV dictionary replacements)
-normalizer = VietnameseNormalizer(enable_transliteration=False)
+# English-to-Vietnamese pronunciation is disabled by default; enable it explicitly when needed
+normalizer = VietnameseNormalizer(enable_transliteration=True)
+normalizer.normalize("Hello container from Singapore")
+# → "hê-lô công-tê-nơ phờ-rôm xin-ga-po"
+
 normalizer.normalize("machine learning algorithm")
-# → "ma-sin li-nin algorithm"  (words in CSV replaced, others kept as-is)
+# → "ma-xin lơn-ning a-go-rít"
 
 # Or override per-call
-normalizer = VietnameseNormalizer(enable_transliteration=True)
 normalizer.normalize("machine learning", enable_transliteration=False)
 ```
 
@@ -193,7 +195,7 @@ The normalization follows this pipeline (matching [nghitts](https://github.com/n
 16. Lowercase normalization
 17. Acronym replacement (from CSV)
 18. Non-Vietnamese word replacement (from CSV)
-19. Rule-based transliteration (for remaining non-Vietnamese words)
+19. Optional rule-based transliteration (for remaining non-Vietnamese words)
 
 ## Performance
 

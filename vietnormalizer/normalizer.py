@@ -53,7 +53,7 @@ class VietnameseNormalizer:
         acronyms_path: Optional[str] = None,
         non_vietnamese_words_path: Optional[str] = None,
         data_dir: Optional[str] = None,
-        enable_transliteration: bool = True
+        enable_transliteration: bool = False
     ):
         """
         Initialize the Vietnamese normalizer.
@@ -65,6 +65,7 @@ class VietnameseNormalizer:
                      'non-vietnamese-words.csv' in this directory.
             enable_transliteration: If True, words not in dictionary and not Vietnamese
                                   will be transliterated to Vietnamese phonetics.
+                                  Disabled by default.
         """
         self.processor = VietnameseTextProcessor()
         self.enable_transliteration = enable_transliteration
@@ -296,8 +297,11 @@ class VietnameseNormalizer:
         # Step 3: Lowercase normalization for consistent matching
         normalized = normalized.lower()
         
-        # Step 3 & 4: Replace words/acronyms using fast word-by-word lookup
-        if self.replacements:
+        should_transliterate = enable_transliteration if enable_transliteration is not None else self.enable_transliteration
+
+        # Step 3 & 4: Replace non-Vietnamese words only when English-to-Vietnamese
+        # pronunciation is enabled.
+        if should_transliterate and self.replacements:
             def replace_word(match):
                 word = match.group(0)
                 word_lower = word.lower()
@@ -308,7 +312,6 @@ class VietnameseNormalizer:
             normalized = re.sub(r'\b\w+\b', replace_word, normalized)
         
         # Step 5: Transliterate remaining non-Vietnamese words
-        should_transliterate = enable_transliteration if enable_transliteration is not None else self.enable_transliteration
         if should_transliterate:
             normalized = self._apply_transliteration(normalized)
         

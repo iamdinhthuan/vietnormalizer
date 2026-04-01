@@ -1,6 +1,6 @@
 # Publishing new versions to PyPI
 
-The package is already on [GitHub](https://github.com/nghimestudio/vietnormalizer) and [PyPI](https://pypi.org/project/vietnormalizer/). This guide is for **releasing a new version** to PyPI.
+The package is published from [GitHub](https://github.com/iamdinhthuan/vietnormalizer) to [PyPI](https://pypi.org/project/vietnormalizer-thuan/). This guide is for **releasing a new version** to PyPI.
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ When prompted:
 ### 4. Verify
 
 ```bash
-pip install vietnormalizer --upgrade
+pip install vietnormalizer-thuan --upgrade
 python3 -c "from vietnormalizer import VietnameseNormalizer; print('OK')"
 ```
 
@@ -76,7 +76,7 @@ python3 -c "from vietnormalizer import VietnameseNormalizer; print('OK')"
 
 If you use a workflow that publishes on release (e.g. `.github/workflows/publish.yml`):
 
-1. Create a **Release** (tag, e.g. `v0.2.4`) on GitHub.
+1. Create a **Release** (tag, e.g. `v0.3.0`) on GitHub.
 2. Add secret **`PYPI_API_TOKEN`** in Settings → Secrets and variables → Actions.
 3. The workflow runs `twine upload dist/*` for you.
 

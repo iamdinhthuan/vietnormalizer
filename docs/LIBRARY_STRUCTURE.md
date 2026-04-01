@@ -26,10 +26,10 @@ pip install -e .
 ```bash
 # Build and install
 python setup.py sdist bdist_wheel
-pip install dist/vietnormalizer-0.1.0.tar.gz
+pip install dist/vietnormalizer_thuan-0.3.0.tar.gz
 
 # Or install from PyPI
-pip install vietnormalizer
+pip install vietnormalizer-thuan
 ```
 
 ## Usage

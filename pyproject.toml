@@ -3,14 +3,14 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vietnormalizer"
-version = "0.2.3"
+name = "vietnormalizer-thuan"
+version = "0.3.0"
 description = "A Python library for normalizing Vietnamese text for TTS and NLP applications"
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
 authors = [
-    {name = "Nghi Studio", email = "nghimestudio@gmail.com"},  # TODO: Update with your info
+    {name = "Dinh Thuan"},
 ]
 keywords = ["vietnamese", "text-normalization", "nlp", "tts", "text-to-speech"]
 classifiers = [
@@ -26,13 +26,12 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/nghimestudio/vietnormalizer"  # TODO: Update with your repo
-Repository = "https://github.com/nghimestudio/vietnormalizer"  # TODO: Update with your repo
-Issues = "https://github.com/nghimestudio/vietnormalizer/issues"  # TODO: Update with your repo
+Homepage = "https://github.com/iamdinhthuan/vietnormalizer"
+Repository = "https://github.com/iamdinhthuan/vietnormalizer"
+Issues = "https://github.com/iamdinhthuan/vietnormalizer/issues"
 
 [tool.setuptools]
 packages = ["vietnormalizer", "vietnormalizer.data"]
 
 [tool.setuptools.package-data]
 vietnormalizer = ["data/*.csv"]
-

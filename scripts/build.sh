@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build vietnormalizer package (no upload).
+# Build vietnormalizer-thuan package (no upload).
 # Run from repository root: ./scripts/build.sh
 
 set -e

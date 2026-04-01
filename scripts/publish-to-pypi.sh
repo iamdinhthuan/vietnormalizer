@@ -1,10 +1,10 @@
 #!/bin/bash
-# Build and publish vietnormalizer to PyPI.
+# Build and publish vietnormalizer-thuan to PyPI.
 # Run from repository root: ./scripts/publish-to-pypi.sh
 
 set -e
 
-echo "🚀 Publish vietnormalizer to PyPI"
+echo "🚀 Publish vietnormalizer-thuan to PyPI"
 echo ""
 
 echo "🧹 Cleaning previous builds..."
@@ -30,7 +30,7 @@ case $choice in
         python3 -m twine upload --repository testpypi dist/*
         echo ""
         echo "✅ Uploaded to TestPyPI!"
-        echo "🧪 Test install: pip install --index-url https://test.pypi.org/simple/ vietnormalizer"
+        echo "🧪 Test install: pip install --index-url https://test.pypi.org/simple/ vietnormalizer-thuan"
         ;;
     2)
         echo ""
@@ -42,8 +42,8 @@ case $choice in
             python3 -m twine upload dist/*
             echo ""
             echo "✅ Published to PyPI!"
-            echo "🎉 https://pypi.org/project/vietnormalizer/"
-            echo "📥 pip install vietnormalizer"
+            echo "🎉 https://pypi.org/project/vietnormalizer-thuan/"
+            echo "📥 pip install vietnormalizer-thuan"
         else
             echo "❌ Cancelled."
             exit 1

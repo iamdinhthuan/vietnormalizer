@@ -59,6 +59,12 @@ def test_birthdate_normalization(normalizer):
     assert "08" not in out or "tám" in out
 
 
+def test_transliteration_disabled_by_default(normalizer):
+    """English-to-Vietnamese pronunciation is disabled by default."""
+    out = normalizer.normalize("Hello container algorithm", enable_preprocessing=False)
+    assert out == "hello container algorithm"
+
+
 # --- Demo (run with python test_normalizer.py) ---
 
 def main():
@@ -89,4 +95,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
